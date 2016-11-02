@@ -101,19 +101,19 @@ h2 {
 
 @keyframes example {
   0% {
-	border-bottom: 4px solid $blue;
+	border-bottom: 4px solid $border;
   }
   25% {
-	border-bottom: 4px solid $border;
+	border-bottom: 4px solid $blue;
   }
   50% {
-	border-bottom: 4px solid $blue;
-  }
-  75% {
 	border-bottom: 4px solid $border;
   }
-  100% {
+  75% {
 	border-bottom: 4px solid $blue;
+  }
+  100% {
+	border-bottom: 4px solid $border;
   }
 }
 
@@ -230,6 +230,10 @@ footer a {
     width: col-size(12,20px,6);
     margin-left: col-size(12,20px,3);
     padding-left: 40px;
+  }
+
+  a:hover {
+    animation: example 2s infinite;
   }
 }
 
