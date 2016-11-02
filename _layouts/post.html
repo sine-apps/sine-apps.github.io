@@ -1,0 +1,20 @@
+---
+layout: default
+---
+
+<div class="block">
+  <div class="grid">
+    <div class="content">
+      <h2>⚄ {{ page.title }} ⚄</h2>
+      <div class="date">
+        <a href="{{ site.url }}">Kieran Browne</a> / {{ page.date | date: "%B %e, %Y" }}
+      </div>
+
+      {{ content }}
+
+      <p>
+        <a href="{{site.url}}#blog">&larr; Back to Posts</a>
+      </p>
+    </div>
+  </div>
+</div>

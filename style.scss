@@ -1,0 +1,234 @@
+---
+---
+
+@import "solar";
+@import "highlights";
+
+$border: #83ffa9;
+$blue: #5044ea;
+// $blue: lighten(#5044ea,14%);
+
+.iso-right {
+  transform: scale(1.153) rotate(-30deg) skewX(-30deg);
+}
+
+.iso-left {
+  transform: scale(1.153) rotate(30deg) skewX(30deg);
+}
+
+.iso-top {
+  transform: scale(1.153) rotate(30deg) skewX(-30deg);
+}
+
+@include gen-grid(12,20px,100%);
+
+body {
+
+  @include baseline(24px,32px);
+  margin: 0;
+  font-family: sans-serif;
+}
+
+.logo {
+
+  font-size: 0;
+  height: 60px;
+  width: 60px;
+  background-image: url(images/logo.svg);
+  // margin-left: 16px;
+  position: relative;
+  overflow: hidden;
+
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    border-radius: 50%;
+    width: 0px;
+    height: 0px;
+    background: lighten($blue,14%);
+    background: $border;
+    z-index: -1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transition: all .5s cubic-bezier(0.770, 0.000, 0.175, 1.000);
+
+  }
+
+  &:hover:after {
+    width: 88px;
+    height: 88px;
+    top: calc(50% - 44px);
+    left: calc(50% - 44px);
+  }
+}
+
+.header {
+
+  border-bottom: 4px solid $border;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  background: #fff;
+}
+
+.content {
+}
+
+p {
+
+  @include baseline(16px,24px,48px);
+  letter-spacing: .8px;
+  color: #333;
+}
+
+h2 {
+
+  @include baseline(56px,96px);
+  letter-spacing: 1.2px;
+  font-weight: 100;
+  color: $blue;
+}
+
+@keyframes example {
+  0% {
+	border-bottom: 4px solid $blue;
+  }
+  25% {
+	border-bottom: 4px solid $border;
+  }
+  50% {
+	border-bottom: 4px solid $blue;
+  }
+  75% {
+	border-bottom: 4px solid $border;
+  }
+  100% {
+	border-bottom: 4px solid $blue;
+  }
+}
+
+a {
+
+  letter-spacing: 1px;
+  color: $border;
+  border-bottom: 4px solid $border;
+  text-decoration: none;
+}
+
+footer a {
+
+  @include baseline(24px,24px);
+  text-decoration: none;
+  border-bottom: 4px solid $border;
+
+  &:hover {
+
+    animation: example 2s infinite;
+  }
+}
+
+.footer {
+
+  // border-top: 4px solid $border;
+  margin-top: 40px;
+  padding-top: 40px;
+}
+
+#main {
+  padding-top: 64px;
+}
+
+.main-nav {
+
+  text-align: right;
+
+  a {
+
+    display: inline-block;
+    @include baseline(24px,39px);
+    margin-left: 20px;
+    color: $border;
+    color: $blue;
+    text-transform: lowercase;
+    border: none;
+    position: relative;
+
+    &:after {
+
+      position: absolute;
+      height: 0px;
+      background: $border;
+      width: calc(100% + 24px);
+      display: block;
+      content: '';
+      top: 20px;
+      left: -12px;
+      z-index: -1;
+      transition: all .5s cubic-bezier(0.770, 0.000, 0.175, 1.000);
+    }
+  }
+
+  a:hover {
+
+    &:after {
+
+      top: -12px;
+      height: 64px;
+    }
+  }
+}
+
+.grid .content {
+
+  img {
+    width: col-size(12,20px,6);
+    margin-top: 48px;
+    @extend .col-8;
+    z-index: -1;
+    position: relative;
+    box-shadow: 3px 3px 9px 2px rgba(100,100,100,0.3);
+
+    &.left {
+      @extend .iso-left;
+    }
+    &.right {
+      @extend .iso-right;
+    }
+    &.top {
+      @extend .iso-top;
+    }
+  }
+
+  div.highlighter-rouge {
+    @include baseline(16px,24px,48px);
+  }
+
+  div.highlighter-rouge ,
+  h2 ,
+  p {
+
+    width: col-size(12,20px,6);
+    margin-left: col-size(12,20px,3);
+    padding-left: 40px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .grid .content {
+
+
+    h2 ,
+    p {
+
+      width: col-size(12,20px,12);
+      margin-left: 20px;
+      padding-left: 0px;
+    }
+
+    h2 {
+      @include baseline(36px,72px);
+    }
+  }
+}
